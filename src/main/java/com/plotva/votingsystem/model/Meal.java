@@ -1,8 +1,5 @@
 package com.plotva.votingsystem.model;
 
-
-import org.hibernate.annotations.OnDelete;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 

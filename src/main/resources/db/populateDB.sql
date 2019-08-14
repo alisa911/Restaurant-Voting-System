@@ -1,3 +1,4 @@
+DELETE FROM votes;
 DELETE FROM menu;
 DELETE FROM restaurants;
 DELETE FROM user_roles;
@@ -24,4 +25,9 @@ INSERT INTO users (name, email, password) VALUES
 INSERT INTO user_roles (user_id, role) VALUES
     (1000, 'ROLE_ADMIN'),
     (1001, 'ROLE_USER');
-    
+
+INSERT INTO votes (user_id, restaurant_id, voting_date) VALUES
+    (1000, 1003, '2019-08-14'),
+    (1001, 1004, '2019-08-14');
+
+
