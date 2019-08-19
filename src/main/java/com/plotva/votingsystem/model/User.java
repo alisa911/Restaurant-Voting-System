@@ -56,7 +56,7 @@ public class User extends AbstractNamedEntity {
         this(u.getId(), u.getName(), u.getRegistered(), u.getEmail(), u.getPassword(), u.isEnabled(), u.getRoles());
     }
 
-    public User(Integer id, String name, LocalDateTime registered, String email, String password, boolean enabled, Set<Role> roles) {
+    private User(Integer id, String name, LocalDateTime registered, String email, String password, boolean enabled, Set<Role> roles) {
         super(id, name);
         this.registeredDate = registered;
         this.email = email;
@@ -65,7 +65,7 @@ public class User extends AbstractNamedEntity {
         this.roles = roles;
     }
 
-    public String getEmail() {
+    private String getEmail() {
         return email;
     }
 
@@ -73,7 +73,7 @@ public class User extends AbstractNamedEntity {
         this.email = email;
     }
 
-    public String getPassword() {
+    private String getPassword() {
         return password;
     }
 
@@ -81,7 +81,7 @@ public class User extends AbstractNamedEntity {
         this.password = password;
     }
 
-    public LocalDateTime getRegistered() {
+    private LocalDateTime getRegistered() {
         return registeredDate;
     }
 
@@ -89,7 +89,7 @@ public class User extends AbstractNamedEntity {
         this.registeredDate = registeredDate;
     }
 
-    public boolean isEnabled() {
+    private boolean isEnabled() {
         return enabled;
     }
 
@@ -97,7 +97,7 @@ public class User extends AbstractNamedEntity {
         this.enabled = enabled;
     }
 
-    public Set<Role> getRoles() {
+    private Set<Role> getRoles() {
         return roles;
     }
 

@@ -28,14 +28,14 @@ public class Vote extends AbstractBaseEntity {
         this(v.getId(), v.getUser(), v.getRestaurant(), v.getVotingDate());
     }
 
-    public Vote(Integer id, User user, Restaurant restaurant, LocalDate votingDate) {
+    private Vote(Integer id, User user, Restaurant restaurant, LocalDate votingDate) {
         super(id);
         this.user = user;
         this.restaurant = restaurant;
         this.votingDate = votingDate;
     }
 
-    public User getUser() {
+    private User getUser() {
         return user;
     }
 
@@ -43,7 +43,7 @@ public class Vote extends AbstractBaseEntity {
         this.user = user;
     }
 
-    public Restaurant getRestaurant() {
+    private Restaurant getRestaurant() {
         return restaurant;
     }
 
@@ -51,7 +51,7 @@ public class Vote extends AbstractBaseEntity {
         this.restaurant = restaurant;
     }
 
-    public LocalDate getVotingDate() {
+    private LocalDate getVotingDate() {
         return votingDate;
     }
 
