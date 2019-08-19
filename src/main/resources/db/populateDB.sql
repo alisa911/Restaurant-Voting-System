@@ -6,9 +6,9 @@ DELETE FROM users;
 ALTER SEQUENCE GLOBAL_SEQ RESTART WITH 1000;
 
 INSERT INTO restaurants (name) VALUES
-    'Restaurant1',
-    'Restaurant2',
-    'Restaurant3';
+    ('Restaurant1'),
+    ('Restaurant2'),
+    ('Restaurant3');
 
 INSERT INTO menu (restaurant_id, name, price) VALUES
     (1003, 'Fish', 10),
