@@ -10,9 +10,19 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+@NamedQueries({
+        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
+        @NamedQuery(name = User.BY_EMAIL, query = "SELECT u FROM User u LEFT JOIN FETCH u.roles WHERE u.email=:email"),
+        @NamedQuery(name = User.GET_ALL, query = "SELECT u FROM User u LEFT JOIN FETCH u.roles ORDER BY u.name, u.email")
+})
+
 @Entity
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email", name = "users_unique_email_idx"))
 public class User extends AbstractNamedEntity {
+
+    public final static String DELETE = "User.delete";
+    public final static String BY_EMAIL = "User.getByEmail";
+    public final static String GET_ALL = "User.getAll";
 
     @Column(name = "registered", nullable = false, columnDefinition = "TIMESTAMP DEFAULT now()")
     @NotNull
