@@ -20,10 +20,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+
     public User create(User user) {
         Assert.notNull(user, "User must be not null");
         return userRepository.save(user);
     }
+
 
     public void delete(int id) {
         checkNotFoundWithId(userRepository.delete(id), id);
@@ -38,12 +40,15 @@ public class UserService {
         return checkNotFound(userRepository.getByEmail(email), "email=" + email);
     }
 
+
     public List<User> getAll() {
         return userRepository.getAll();
     }
+
 
     public void update(User user) {
         Assert.notNull(user, "User must be not null");
         checkNotFoundWithId(userRepository.save(user), user.getId());
     }
+
 }

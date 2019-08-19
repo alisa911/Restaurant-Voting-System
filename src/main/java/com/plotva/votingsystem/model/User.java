@@ -10,43 +10,33 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@NamedQueries({
-        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
-        @NamedQuery(name = User.BY_EMAIL, query = "SELECT u FROM User u LEFT JOIN FETCH u.roles WHERE u.email=:email"),
-        @NamedQuery(name = User.GET_ALL, query = "SELECT u FROM User u LEFT JOIN FETCH u.roles ORDER BY u.name, u.email")
-})
-
 @Entity
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email", name = "users_unique_email_idx"))
 public class User extends AbstractNamedEntity {
 
-    public final static String DELETE = "User.delete";
-    public final static String BY_EMAIL = "User.getByEmail";
-    public final static String GET_ALL = "User.getAll";
-
-    @Column(name = "registered", nullable = false, columnDefinition = "TIMESTAMP DEFAULT now()")
-    @NotNull
-    private LocalDateTime registeredDate;
-
-    @Column(name = "password", nullable = false)
-    @NotBlank
-    @Size(max = 50)
-    private String password;
-
     @Column(name = "email", nullable = false, unique = true)
     @Email
     @NotBlank
-    @Size(max = 50)
+    @Size(min = 3, max = 50)
     private String email;
 
+    @Column(name = "password", nullable = false)
+    @NotBlank
+    @Size(min = 5, max = 50)
+    private String password;
+
+    @Column(name = "registered", nullable = false, columnDefinition = "TIMESTAMP DEFAULT now()")
+    @NotNull
+    private LocalDateTime registered;
+
     @Column(name = "enabled", nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
-    private boolean enabled = true;
+    private boolean enabled;
 
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
-    @BatchSize(size = 500)
+    @BatchSize(size = 1000)
     private Set<Role> roles;
 
     public User() {
@@ -56,16 +46,16 @@ public class User extends AbstractNamedEntity {
         this(u.getId(), u.getName(), u.getRegistered(), u.getEmail(), u.getPassword(), u.isEnabled(), u.getRoles());
     }
 
-    private User(Integer id, String name, LocalDateTime registered, String email, String password, boolean enabled, Set<Role> roles) {
+    public User(Integer id, String name, LocalDateTime registered, String email, String password, boolean enabled, Set<Role> roles) {
         super(id, name);
-        this.registeredDate = registered;
         this.email = email;
+        this.registered = registered;
         this.password = password;
         this.enabled = enabled;
         this.roles = roles;
     }
 
-    private String getEmail() {
+    public String getEmail() {
         return email;
     }
 
@@ -73,7 +63,7 @@ public class User extends AbstractNamedEntity {
         this.email = email;
     }
 
-    private String getPassword() {
+    public String getPassword() {
         return password;
     }
 
@@ -81,15 +71,15 @@ public class User extends AbstractNamedEntity {
         this.password = password;
     }
 
-    private LocalDateTime getRegistered() {
-        return registeredDate;
+    public LocalDateTime getRegistered() {
+        return registered;
     }
 
-    public void setRegistered(LocalDateTime registeredDate) {
-        this.registeredDate = registeredDate;
+    public void setRegistered(LocalDateTime registered) {
+        this.registered = registered;
     }
 
-    private boolean isEnabled() {
+    public boolean isEnabled() {
         return enabled;
     }
 
@@ -97,7 +87,7 @@ public class User extends AbstractNamedEntity {
         this.enabled = enabled;
     }
 
-    private Set<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
@@ -108,14 +98,13 @@ public class User extends AbstractNamedEntity {
     @Override
     public String toString() {
         return "User{" +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                ", registeredDate=" + registeredDate +
-                ", email='" + email + '\'' +
+                "email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", registered=" + registered +
                 ", enabled=" + enabled +
                 ", roles=" + roles +
+                ", name='" + name + '\'' +
+                ", id=" + id +
                 '}';
     }
-
 }

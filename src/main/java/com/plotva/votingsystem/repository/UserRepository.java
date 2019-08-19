@@ -1,51 +1,39 @@
 package com.plotva.votingsystem.repository;
 
 import com.plotva.votingsystem.model.User;
-import org.springframework.dao.support.DataAccessUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-@Transactional(readOnly = true)
 public class UserRepository {
 
-    @PersistenceContext
-    private EntityManager em;
+    private static final Sort SORT_BY_DATE = new Sort(Sort.Direction.DESC, "registered");
 
-    @Transactional
+    @Autowired
+    private CrudUserRepository crudRepository;
+
     public User save(User user) {
-        if (user.isNew()) {
-            em.persist(user);
-            return user;
-        } else {
-            return em.merge(user);
-        }
+        return crudRepository.save(user);
     }
 
     public User get(int id) {
-        return em.find(User.class, id);
+        return crudRepository.findById(id).orElse(null);
     }
 
     @Transactional
     public boolean delete(int id) {
-        return em.createNamedQuery(User.DELETE)
-                .setParameter("id", id)
-                .executeUpdate() != 0;
+        return crudRepository.deleteUserById(id) != 0;
     }
 
     public User getByEmail(String email) {
-        List<User> users = em.createNamedQuery(User.BY_EMAIL, User.class)
-                .setParameter("email", email)
-                .getResultList();
-        return DataAccessUtils.singleResult(users);
+        return crudRepository.getUserByEmail(email);
     }
 
     public List<User> getAll() {
-        return em.createNamedQuery(User.GET_ALL, User.class)
-                .getResultList();
+        return crudRepository.findAll(SORT_BY_DATE);
     }
 }
