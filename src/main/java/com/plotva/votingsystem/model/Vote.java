@@ -1,16 +1,19 @@
 package com.plotva.votingsystem.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Null;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "votes", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "voting_date"}, name = "users_votes_unique_date_idx"))
 public class Vote extends AbstractBaseEntity {
 
+    @Null
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "global_seq", foreignKeyDefinition = "START WITH 1000"))
     @OneToOne(fetch = FetchType.EAGER)
     private User user;
 
+    @Null
     @JoinColumn(name = "restaurant_id", foreignKey = @ForeignKey(name = "global_seq", foreignKeyDefinition = "START WITH 1000"))
     @OneToOne(fetch = FetchType.EAGER)
     private Restaurant restaurant;

@@ -3,6 +3,10 @@ package com.plotva.votingsystem.model;
 import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -10,12 +14,22 @@ import java.util.Set;
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email", name = "users_unique_email_idx"))
 public class User extends AbstractNamedEntity {
 
+    @Column(name = "registered", nullable = false, columnDefinition = "TIMESTAMP DEFAULT now()")
+    @NotNull
     private LocalDateTime registeredDate;
 
+    @Column(name = "password", nullable = false)
+    @NotBlank
+    @Size(max = 50)
     private String password;
 
+    @Column(name = "email", nullable = false, unique = true)
+    @Email
+    @NotBlank
+    @Size(max = 50)
     private String email;
 
+    @Column(name = "enabled", nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
     private boolean enabled = true;
 
     @Enumerated(EnumType.STRING)

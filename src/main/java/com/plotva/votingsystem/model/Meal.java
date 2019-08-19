@@ -1,5 +1,7 @@
 package com.plotva.votingsystem.model;
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -9,8 +11,9 @@ public class Meal  extends AbstractNamedEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
+    @Nullable
     private Restaurant restaurant;
-
+    @Column(name = "price", nullable = false)
     private int price;
 
     private LocalDate date;
