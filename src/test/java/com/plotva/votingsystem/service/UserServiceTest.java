@@ -4,7 +4,7 @@ import com.plotva.votingsystem.model.Role;
 import com.plotva.votingsystem.model.User;
 
 
-import com.plotva.votingsystem.utils.NotFoundException;
+import com.plotva.votingsystem.util.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.junit.jupiter.api.Test;

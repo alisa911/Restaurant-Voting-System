@@ -3,7 +3,7 @@ DELETE FROM meals;
 DELETE FROM restaurants;
 DELETE FROM user_roles;
 DELETE FROM users;
-ALTER SEQUENCE GLOBAL_SEQ RESTART WITH 1000;
+ALTER SEQUENCE global_seq RESTART WITH 1000;
 
 INSERT INTO users (name, email, password) VALUES
     ('Nataly', 'qweqwe@gmail.com', 'qweqwe'),
@@ -25,8 +25,6 @@ INSERT INTO meals (restaurant_id, name, price, date) VALUES
     (1004, 'Burger', 40, '2019-08-18'),
     (1004, 'Potato', 10, '2019-08-18'),
     (1004, 'IceCream', 20, '2019-08-18');
-
-
 
 INSERT INTO votes (user_id, restaurant_id, voting_date) VALUES
     (1000, 1003, '2019-08-14'),

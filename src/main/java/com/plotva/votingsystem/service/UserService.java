@@ -8,8 +8,8 @@ import org.springframework.util.Assert;
 
 import java.util.List;
 
-import static com.plotva.votingsystem.utils.ValidationUtils.checkNotFound;
-import static com.plotva.votingsystem.utils.ValidationUtils.checkNotFoundWithId;
+import static com.plotva.votingsystem.util.ValidationUtil.checkNotFound;
+import static com.plotva.votingsystem.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class UserService {

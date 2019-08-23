@@ -1,4 +1,4 @@
-package com.plotva.votingsystem.utils;
+package com.plotva.votingsystem.util;
 
 public class NotFoundException extends RuntimeException {
    public NotFoundException(String message) {

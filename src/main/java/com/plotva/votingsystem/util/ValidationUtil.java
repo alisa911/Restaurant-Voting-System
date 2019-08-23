@@ -1,8 +1,8 @@
-package com.plotva.votingsystem.utils;
+package com.plotva.votingsystem.util;
 
 
-public class ValidationUtils {
-    private ValidationUtils() {
+public class ValidationUtil {
+    private ValidationUtil() {
     }
 
     public static <T> T checkNotFoundWithId(T object, int id) {
