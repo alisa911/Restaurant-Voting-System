@@ -2,7 +2,6 @@ package com.plotva.votingsystem.service;
 
 import com.plotva.votingsystem.model.User;
 import com.plotva.votingsystem.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -15,7 +14,6 @@ import static com.plotva.votingsystem.util.ValidationUtil.checkNotFoundWithId;
 public class UserService {
     private final UserRepository userRepository;
 
-    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }

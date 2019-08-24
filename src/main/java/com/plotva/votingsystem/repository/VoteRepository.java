@@ -2,7 +2,6 @@ package com.plotva.votingsystem.repository;
 
 import com.plotva.votingsystem.model.User;
 import com.plotva.votingsystem.model.Vote;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -11,11 +10,14 @@ import java.util.List;
 
 @Repository
 public class VoteRepository {
-    @Autowired
-    private CrudVoteRepository repository;
+    private final CrudVoteRepository repository;
 
-    @Autowired
-    private CrudUserRepository userRepository;
+    private final CrudUserRepository userRepository;
+
+    public VoteRepository(CrudVoteRepository repository, CrudUserRepository userRepository) {
+        this.repository = repository;
+        this.userRepository = userRepository;
+    }
 
     public Vote save(Vote vote, int userId) {
         User user = userRepository.findById(userId).orElse(null);

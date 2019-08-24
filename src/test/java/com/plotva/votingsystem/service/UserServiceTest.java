@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static com.plotva.votingsystem.UserTestData.*;
+import static com.plotva.votingsystem.data.UserTestData.*;
 
 
 public class UserServiceTest extends AbstractServiceTest {
@@ -26,7 +26,7 @@ public class UserServiceTest extends AbstractServiceTest {
         User newUser = new User(
                 null,
                 "Nata",
-                LocalDateTime.now(),
+                new Date(),
                 "qe@gmail.com",
                 "qe",
                 true,

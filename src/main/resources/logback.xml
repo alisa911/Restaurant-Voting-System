@@ -3,7 +3,7 @@
     <jmxConfigurator/>
 
     <appender name="file" class="ch.qos.logback.core.FileAppender">
-        <file>D:/projects/Restaurant-REST-Voting-System/log/app.log</file>
+        <file>plotva/projects/votingsystem/log/app.log</file>
 
         <encoder>
             <charset>UTF-8</charset>

@@ -1,7 +1,6 @@
 package com.plotva.votingsystem.repository;
 
 import com.plotva.votingsystem.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,8 +12,11 @@ public class UserRepository {
 
     private static final Sort SORT_BY_DATE = new Sort(Sort.Direction.DESC, "registered");
 
-    @Autowired
-    private CrudUserRepository crudRepository;
+    private final CrudUserRepository crudRepository;
+
+    public UserRepository(CrudUserRepository crudRepository) {
+        this.crudRepository = crudRepository;
+    }
 
     public User save(User user) {
         return crudRepository.save(user);

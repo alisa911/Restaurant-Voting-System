@@ -1,24 +1,27 @@
 package com.plotva.votingsystem.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
-import javax.validation.constraints.Null;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "votes", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "voting_date"}, name = "users_votes_unique_date_idx"))
 public class Vote extends AbstractBaseEntity {
 
-    @Null
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "global_seq", foreignKeyDefinition = "START WITH 1000"))
     @OneToOne(fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
-    @Null
     @JoinColumn(name = "restaurant_id", foreignKey = @ForeignKey(name = "global_seq", foreignKeyDefinition = "START WITH 1000"))
     @OneToOne(fetch = FetchType.EAGER)
     private Restaurant restaurant;
 
     @Column(name = "voting_date", nullable = false, columnDefinition = "DATE DEFAULT now()")
+    @NotNull
     private LocalDate votingDate;
 
     public Vote() {
@@ -28,14 +31,14 @@ public class Vote extends AbstractBaseEntity {
         this(v.getId(), v.getUser(), v.getRestaurant(), v.getVotingDate());
     }
 
-    private Vote(Integer id, User user, Restaurant restaurant, LocalDate votingDate) {
+    public Vote(Integer id, User user, Restaurant restaurant, LocalDate votingDate) {
         super(id);
         this.user = user;
         this.restaurant = restaurant;
         this.votingDate = votingDate;
     }
 
-    private User getUser() {
+    public User getUser() {
         return user;
     }
 
@@ -43,7 +46,7 @@ public class Vote extends AbstractBaseEntity {
         this.user = user;
     }
 
-    private Restaurant getRestaurant() {
+    public Restaurant getRestaurant() {
         return restaurant;
     }
 
@@ -51,7 +54,7 @@ public class Vote extends AbstractBaseEntity {
         this.restaurant = restaurant;
     }
 
-    private LocalDate getVotingDate() {
+    public LocalDate getVotingDate() {
         return votingDate;
     }
 

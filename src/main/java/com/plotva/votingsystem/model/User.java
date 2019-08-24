@@ -7,7 +7,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -27,7 +27,7 @@ public class User extends AbstractNamedEntity {
 
     @Column(name = "registered", nullable = false, columnDefinition = "TIMESTAMP DEFAULT now()")
     @NotNull
-    private LocalDateTime registered;
+    private Date registered= new Date();
 
     @Column(name = "enabled", nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
     private boolean enabled;
@@ -46,7 +46,7 @@ public class User extends AbstractNamedEntity {
         this(u.getId(), u.getName(), u.getRegistered(), u.getEmail(), u.getPassword(), u.isEnabled(), u.getRoles());
     }
 
-    public User(Integer id, String name, LocalDateTime registered, String email, String password, boolean enabled, Set<Role> roles) {
+    public User(Integer id, String name, Date registered, String email, String password, boolean enabled, Set<Role> roles) {
         super(id, name);
         this.email = email;
         this.registered = registered;
@@ -71,11 +71,11 @@ public class User extends AbstractNamedEntity {
         this.password = password;
     }
 
-    public LocalDateTime getRegistered() {
+    public Date getRegistered() {
         return registered;
     }
 
-    public void setRegistered(LocalDateTime registered) {
+    public void setRegistered(Date registered) {
         this.registered = registered;
     }
 
