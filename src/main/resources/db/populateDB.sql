@@ -3,7 +3,6 @@ DELETE FROM meals;
 DELETE FROM restaurants;
 DELETE FROM user_roles;
 DELETE FROM users;
-ALTER SEQUENCE GLOBAL_SEQ RESTART WITH 1000;
 
 INSERT INTO users (name, email, password) VALUES
     ('Nataly', 'qweqwe@gmail.com', 'qweqwe'),
