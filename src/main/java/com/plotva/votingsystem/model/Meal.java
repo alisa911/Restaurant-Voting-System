@@ -34,14 +34,14 @@ public class Meal  extends AbstractNamedEntity{
         this(meal.getId(), meal.getName(), meal.getRestaurant(), meal.getPrice(), meal.getDate());
     }
 
-    private Meal(Integer id, String name, Restaurant restaurant, int price, LocalDate date) {
+    public Meal(Integer id, String name, Restaurant restaurant, int price, LocalDate date) {
         super(id, name);
         this.restaurant = restaurant;
         this.price = price;
         this.date = date;
     }
 
-    private Restaurant getRestaurant() {
+    public Restaurant getRestaurant() {
         return restaurant;
     }
 
@@ -68,10 +68,10 @@ public class Meal  extends AbstractNamedEntity{
     @Override
     public String toString() {
         return "Meal{" +
+                ", id=" + id +
+                ", name='" + name + '\'' +
                 ", price=" + price +
                 ", date=" + date +
-                ", name='" + name + '\'' +
-                ", id=" + id +
                 '}';
     }
 }

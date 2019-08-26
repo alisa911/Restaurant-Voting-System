@@ -11,8 +11,10 @@ import java.util.Arrays;
 public class RestaurantTestData {
     public static final int FIRST_RESTAURANT_ID = 1002;
     public static final int SECOND_RESTAURANT_ID = 1003;
+    public static final int THIRD_RESTAURANT_ID = 1004;
     public static final Restaurant FIRST_RESTAURANT = new Restaurant(FIRST_RESTAURANT_ID, "Restaurant1");
     public static final Restaurant SECOND_RESTAURANT = new Restaurant(SECOND_RESTAURANT_ID, "Restaurant2");
+    public static final Restaurant THIRD_RESTAURANT = new Restaurant(THIRD_RESTAURANT_ID, "Restaurant3");
 
     private RestaurantTestData() {
     }

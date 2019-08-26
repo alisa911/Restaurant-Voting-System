@@ -4,6 +4,8 @@ DELETE FROM restaurants;
 DELETE FROM user_roles;
 DELETE FROM users;
 
+ALTER SEQUENCE global_seq RESTART WITH 1000;
+
 INSERT INTO users (name, email, password) VALUES
     ('Nataly', 'qweqwe@gmail.com', 'qweqwe'),
     ('Alisa', 'asdasd@gmail.com', 'asdasd911');
