@@ -4,9 +4,10 @@ import com.plotva.votingsystem.model.Restaurant;
 import com.plotva.votingsystem.to.RestaurantTo;
 import com.plotva.votingsystem.to.RestaurantVoteTo;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
 
 public class RestaurantTestData {
     public static final int FIRST_RESTAURANT_ID = 1002;
@@ -33,10 +34,6 @@ public class RestaurantTestData {
 
     public static void assertMatch(Iterable<Restaurant> actual, Iterable<Restaurant> expected) {
         assertThat(actual).usingElementComparatorIgnoringFields("menu").isEqualTo(expected);
-    }
-
-    public static void assertMatchWithVotes(Iterable<RestaurantVoteTo> actual, Iterable<RestaurantVoteTo> expected) {
-        assertThat(actual).usingRecursiveFieldByFieldElementComparator().isEqualTo(expected);
     }
 
     public static void assertMatchTo(RestaurantTo actual, RestaurantTo expected) {
