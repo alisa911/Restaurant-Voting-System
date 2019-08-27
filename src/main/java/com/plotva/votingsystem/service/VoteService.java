@@ -30,6 +30,7 @@ public class VoteService {
     public void update(Vote vote, int userId) {
         Assert.notNull(vote, "Vote must be not null");
         checkForSameDate(vote.getVotingDate(), get(vote.getId(), userId).getVotingDate(), "You can not change voting date");
+        checkTimeException();
         checkNotFoundWithId(voteRepository.save(vote, userId), vote.getId());
     }
 
@@ -45,6 +46,7 @@ public class VoteService {
 
     public void delete(int id, int userId) {
         checkNotFoundWithId(voteRepository.delete(id, userId), id);
+        checkTimeException();
     }
 
 }

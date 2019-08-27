@@ -2,6 +2,7 @@ package com.plotva.votingsystem.util;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class ValidationUtil {
     private ValidationUtil() {
@@ -29,6 +30,13 @@ public class ValidationUtil {
     public static void checkForSameDate(LocalDate actualDate, LocalDate expectedDate, String message) {
         if (!actualDate.equals(expectedDate))
             throw new DateTimeException(message);
+    }
+
+    public static void checkTimeException() {
+        LocalTime time = LocalTime.now();
+        LocalTime endTime = LocalTime.of(23, 0);
+        if (time.isAfter(endTime))
+            throw new TimeOverException();
     }
 
 }
