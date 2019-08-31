@@ -4,6 +4,7 @@ import com.plotva.votingsystem.model.Meal;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -35,6 +36,10 @@ public class MealRepository {
 
     public Meal getWithRestaurant(int id) {
         return repository.getMealByIdWithRestaurant(id);
+    }
+
+    public List<Meal> getAllByDate(int restaurantId, LocalDate date) {
+        return repository.getMealsByRestaurantIdAndDate(restaurantId, date);
     }
 
     public boolean delete(int id) {

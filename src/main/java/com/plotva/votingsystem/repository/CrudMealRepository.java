@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface CrudMealRepository extends JpaRepository<Meal, Integer> {
@@ -20,4 +21,6 @@ public interface CrudMealRepository extends JpaRepository<Meal, Integer> {
     Meal getMealByIdWithRestaurant(@Param("id") int id);
 
     List<Meal> getMealsByRestaurantId(int restaurantId, Sort sort);
+
+    List<Meal> getMealsByRestaurantIdAndDate(int restaurantId, LocalDate date);
 }

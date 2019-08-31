@@ -1,5 +1,7 @@
 package com.plotva.votingsystem.util;
 
+import com.plotva.votingsystem.to.BaseTo;
+
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -37,6 +39,20 @@ public class ValidationUtil {
         LocalTime endTime = LocalTime.of(23, 0);
         if (time.isAfter(endTime))
             throw new TimeOverException();
+    }
+
+    public static void checkNew(BaseTo entity) {
+        if (!entity.isNew()) {
+            throw new IllegalArgumentException(entity + " must be new (id=null)");
+        }
+    }
+
+    public static void assureIdConsistent(BaseTo entity, int id) {
+        if (entity.isNew()) {
+            entity.setId(id);
+        } else if (entity.getId() != id) {
+            throw new IllegalArgumentException(entity + " must be with id=" + id);
+        }
     }
 
 }

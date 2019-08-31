@@ -1,12 +1,12 @@
 package com.plotva.votingsystem.service;
 
 import com.plotva.votingsystem.model.Meal;
-import com.plotva.votingsystem.model.User;
 import com.plotva.votingsystem.repository.MealRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 
 import static com.plotva.votingsystem.util.ValidationUtil.checkNotFoundWithId;
@@ -40,8 +40,10 @@ public class MealService {
     }
 
     public Meal get(int id) {
+
         return checkNotFoundWithId(repository.get(id), id);
     }
+
     @Transactional
     public void delete(int id) {
         checkNotFoundWithId(repository.delete(id), id);
@@ -49,5 +51,10 @@ public class MealService {
 
     public Meal getWithRestaurant(int id) {
         return checkNotFoundWithId(repository.getWithRestaurant(id), id);
+    }
+
+    public List<Meal> getAllByDate(int restaurantId, LocalDate date) {
+        Assert.notNull(date, "Date must be not null");
+        return repository.getAllByDate(restaurantId, date);
     }
 }

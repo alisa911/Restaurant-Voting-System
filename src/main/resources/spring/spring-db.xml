@@ -38,6 +38,9 @@
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).FORMAT_SQL}" value="${hibernate.format_sql}"/>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}" value="${hibernate.use_sql_comments}"/>
                 <!--<entry key="#{T(org.hibernate.cfg.AvailableSettings).HBM2DDL_AUTO}" value="${hibernate.hbm2ddl.auto}"/>-->
+
+                <entry key="javax.persistence.validation.group.pre-persist" value="com.plotva.votingsystem.web.View$Persist"/>
+                <entry key="javax.persistence.validation.group.pre-update" value="com.plotva.votingsystem.web.View$Persist"/>
             </map>
         </property>
 
