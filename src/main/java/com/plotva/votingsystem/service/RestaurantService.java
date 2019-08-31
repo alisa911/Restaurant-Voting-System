@@ -2,6 +2,7 @@ package com.plotva.votingsystem.service;
 
 import com.plotva.votingsystem.model.Restaurant;
 import com.plotva.votingsystem.repository.RestaurantRepository;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -18,11 +19,12 @@ public class RestaurantService {
         this.repository = repository;
     }
 
+    @CacheEvict(value = "meals", allEntries = true)
     public Restaurant create(Restaurant restaurant) {
         Assert.notNull(restaurant, "Restaurant must be not null");
         return repository.save(restaurant);
     }
-
+    @CacheEvict(value = "meals", allEntries = true)
     public void update(Restaurant restaurant) {
         Assert.notNull(restaurant, "Restaurant must be not null");
         repository.save(restaurant);

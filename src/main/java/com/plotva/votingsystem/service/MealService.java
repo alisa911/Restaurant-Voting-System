@@ -2,10 +2,12 @@ package com.plotva.votingsystem.service;
 
 import com.plotva.votingsystem.model.Meal;
 import com.plotva.votingsystem.repository.MealRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class MealService {
         this.repository = repository;
     }
 
+    @CacheEvict(value = "meals", allEntries = true)
     public Meal create(Meal meal) {
         Assert.notNull(meal, "Meal must be not null");
         return repository.save(meal);
@@ -29,12 +32,12 @@ public class MealService {
         Assert.notNull(meal, "Meals list must be not null");
         return repository.save(meal);
     }
-
+    @CacheEvict(value = "meals", allEntries = true)
     public void update(Meal meal) {
         Assert.notNull(meal, "Meal must be not null");
         repository.save(meal);
     }
-
+    @Cacheable("meals")
     public List<Meal> getAll(int restaurantId) {
         return repository.getAll(restaurantId);
     }
@@ -44,6 +47,7 @@ public class MealService {
         return checkNotFoundWithId(repository.get(id), id);
     }
 
+    @CacheEvict(value = "meals", allEntries = true)
     @Transactional
     public void delete(int id) {
         checkNotFoundWithId(repository.delete(id), id);

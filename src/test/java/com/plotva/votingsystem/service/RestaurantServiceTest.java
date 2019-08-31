@@ -1,7 +1,9 @@
 package com.plotva.votingsystem.service;
 
 import com.plotva.votingsystem.model.Restaurant;
+import com.plotva.votingsystem.repository.JpaUtil;
 import com.plotva.votingsystem.util.NotFoundException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,6 +15,15 @@ public class RestaurantServiceTest extends AbstractServiceTest {
 
     @Autowired
     private RestaurantService service;
+
+    @Autowired
+    private JpaUtil jpaUtil;
+
+    @BeforeEach
+    void setUp() {
+        cacheManager.getCache("meals").clear();
+        jpaUtil.clear2ndLevelCache();
+    }
 
     @Test
     void create() {

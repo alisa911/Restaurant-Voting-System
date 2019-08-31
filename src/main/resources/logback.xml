@@ -19,6 +19,7 @@
     </appender>
 
     <logger name="com.plotva.votingsystem" level="debug"/>
+    <logger name="org.springframework.security.web.csrf.CsrfFilter" level="debug"/>
 
     <root level="info">
         <appender-ref ref="file"/>

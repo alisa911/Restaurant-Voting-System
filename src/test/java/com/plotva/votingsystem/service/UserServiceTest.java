@@ -4,7 +4,9 @@ import com.plotva.votingsystem.model.Role;
 import com.plotva.votingsystem.model.User;
 
 
+import com.plotva.votingsystem.repository.JpaUtil;
 import com.plotva.votingsystem.util.NotFoundException;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.junit.jupiter.api.Test;
@@ -20,6 +22,15 @@ public class UserServiceTest extends AbstractServiceTest {
 
     @Autowired
     private UserService service;
+
+    @Autowired
+    private JpaUtil jpaUtil;
+
+    @BeforeEach
+    void setUp() {
+        cacheManager.getCache("users").clear();
+        jpaUtil.clear2ndLevelCache();
+    }
 
     @Test
     public void create() {
