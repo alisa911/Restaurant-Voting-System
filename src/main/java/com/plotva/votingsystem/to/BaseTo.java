@@ -1,6 +1,8 @@
 package com.plotva.votingsystem.to;
 
-public abstract class BaseTo {
+import com.plotva.votingsystem.HasId;
+
+public abstract class BaseTo implements HasId {
     protected Integer id;
 
     public BaseTo() {

@@ -1,9 +1,11 @@
 package com.plotva.votingsystem.model;
 
 import com.plotva.votingsystem.HasEmail;
+import com.plotva.votingsystem.web.View;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -23,6 +25,7 @@ public class User extends AbstractNamedEntity implements HasEmail {
     @Email
     @NotBlank
     @Size(min = 5, max = 50)
+    @SafeHtml(groups = {View.Web.class})
     private String email;
 
     @Column(name = "password", nullable = false)
