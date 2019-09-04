@@ -31,7 +31,7 @@ import static org.springframework.format.annotation.DateTimeFormat.ISO.DATE;
 @RestController
 @RequestMapping(value = MealRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class MealRestController {
-    static final String REST_URL = "/meals";
+    public static final String REST_URL = "/meals";
     private static final Logger log = LoggerFactory.getLogger(MealRestController.class);
 
     private final MealService service;
@@ -107,12 +107,12 @@ public class MealRestController {
 
     private List<MealTo> getAll(int restaurantId) {
         log.info("Get all meals of restaurant {}", restaurantId);
-        return modelMapper.map(service.getAll(restaurantId), new TypeToken<List<Meal>>() {}.getType());
+        return modelMapper.map(service.getAll(restaurantId), new TypeToken<List<MealTo>>() {}.getType());
     }
 
     private List<MealTo> getAllByDate(int restaurantId, @DateTimeFormat(iso = DATE) LocalDate date) {
         log.info("Get all meals of restaurant {} by date {}", restaurantId, date);
-        return modelMapper.map(service.getAllByDate(restaurantId, date), new TypeToken<List<Meal>>() {}.getType());
+        return modelMapper.map(service.getAllByDate(restaurantId, date), new TypeToken<List<MealTo>>() {}.getType());
     }
 
 

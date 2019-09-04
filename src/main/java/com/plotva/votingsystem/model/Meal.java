@@ -2,7 +2,6 @@ package com.plotva.votingsystem.model;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.hibernate.validator.constraints.Range;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -20,7 +19,6 @@ public class Meal  extends AbstractNamedEntity{
     private Restaurant restaurant;
 
     @Column(name = "price", nullable = false)
-    @Range(min = 1, max = 100000)
     private int price;
 
     @Column(name = "date", nullable = false, columnDefinition = "DATE DEFAULT now()")
@@ -68,7 +66,7 @@ public class Meal  extends AbstractNamedEntity{
     @Override
     public String toString() {
         return "Meal{" +
-                ", id=" + id +
+                "  id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", date=" + date +

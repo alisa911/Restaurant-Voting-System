@@ -47,4 +47,15 @@ public class MealRestaurantTo extends BaseTo {
         this.date = date;
     }
 
+    @Override
+    public String toString() {
+        return "MealRestaurantTo{" +
+                "name='" + name + '\'' +
+                ", restaurant=" + restaurant +
+                ", price=" + price +
+                ", date=" + date +
+                ", id=" + id +
+                '}';
+    }
+
 }

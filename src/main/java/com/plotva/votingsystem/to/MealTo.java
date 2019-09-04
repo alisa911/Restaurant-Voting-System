@@ -2,18 +2,32 @@ package com.plotva.votingsystem.to;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class MealTo extends BaseTo {
+    @Size(min = 2, max = 100)
     @NotBlank
     private String name;
 
+    private int restaurantId;
+
     private int price;
 
-    private int restaurantId;
 
     @NotNull
     private LocalDate date = LocalDate.now();
+
+    public MealTo() {
+    }
+
+    public MealTo(Integer id, String name, int restaurantId, int price, LocalDate date) {
+        super(id);
+        this.name = name;
+        this.restaurantId = restaurantId;
+        this.price = price;
+        this.date = date;
+    }
 
     public String getName() {
         return name;
@@ -50,11 +64,11 @@ public class MealTo extends BaseTo {
     @Override
     public String toString() {
         return "MealTo{" +
-                "name='" + name + '\'' +
-                ", price=" + price +
-                ", restaurantId=" + restaurantId +
-                ", date=" + date +
                 ", id=" + id +
+                ", name='" + name + '\'' +
+                ", restaurantId=" + restaurantId +
+                ", price=" + price +
+                ", date=" + date +
                 '}';
     }
 }
