@@ -7,6 +7,7 @@ import com.plotva.votingsystem.to.MealTo;
 import com.plotva.votingsystem.util.JsonUtil;
 import com.plotva.votingsystem.web.controller.MealRestController;
 import org.junit.jupiter.api.Test;
+import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -103,7 +104,7 @@ public class MealRestControllerTest extends AbstractControllerTest {
 
     @Test
     void create() throws Exception {
-        Meal meal = new Meal(null, "Fresh", FIRST_RESTAURANT, 90, LocalDate.of(2019, 9, 3));
+        Meal meal = new Meal(null, "Fresh", FIRST_RESTAURANT, 90, LocalDate.of(2019, 9, 4));
         MealTo expected = modelMapper.map(meal, MealTo.class);
         ResultActions actions = mockMvc.perform(post(REST_URL)
                 .with(userAuth(FIRST_USER))

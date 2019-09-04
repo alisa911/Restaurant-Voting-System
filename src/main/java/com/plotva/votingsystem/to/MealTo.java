@@ -1,5 +1,7 @@
 package com.plotva.votingsystem.to;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -64,8 +66,8 @@ public class MealTo extends BaseTo {
     @Override
     public String toString() {
         return "MealTo{" +
-                ", id=" + id +
-                ", name='" + name + '\'' +
+                "  id=" + id +
+                ", name='" + name +
                 ", restaurantId=" + restaurantId +
                 ", price=" + price +
                 ", date=" + date +

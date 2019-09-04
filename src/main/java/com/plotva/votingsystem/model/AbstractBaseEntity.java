@@ -1,10 +1,12 @@
 package com.plotva.votingsystem.model;
 
+import com.plotva.votingsystem.HasId;
+
 import javax.persistence.*;
 
 @MappedSuperclass
 @Access(AccessType.FIELD)
-public abstract class AbstractBaseEntity {
+public abstract class AbstractBaseEntity  implements HasId {
 
     private static final int START_SEQ = 1000;
 
@@ -26,19 +28,5 @@ public abstract class AbstractBaseEntity {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + ":" + id;
-    }
-
-    @Override
-    public int hashCode() {
-        return id == null ? 0 : id;
-    }
-
-    public boolean isNew() {
-        return id == null;
     }
 }

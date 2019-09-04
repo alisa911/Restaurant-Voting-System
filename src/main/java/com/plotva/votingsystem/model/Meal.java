@@ -2,6 +2,7 @@ package com.plotva.votingsystem.model;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;

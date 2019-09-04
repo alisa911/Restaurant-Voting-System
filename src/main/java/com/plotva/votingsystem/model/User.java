@@ -1,5 +1,6 @@
 package com.plotva.votingsystem.model;
 
+import com.plotva.votingsystem.HasEmail;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -9,18 +10,19 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email", name = "users_unique_email_idx"))
-public class User extends AbstractNamedEntity {
+public class User extends AbstractNamedEntity implements HasEmail {
 
     @Column(name = "email", nullable = false, unique = true)
     @Email
     @NotBlank
-    @Size(min = 3, max = 50)
+    @Size(min = 5, max = 50)
     private String email;
 
     @Column(name = "password", nullable = false)
@@ -57,6 +59,14 @@ public class User extends AbstractNamedEntity {
         this.password = password;
         this.enabled = enabled;
         this.roles = roles;
+    }
+
+    public User(Integer id, String name, String email, String password, Role role) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.roles = Collections.singleton(role);
     }
 
     public String getEmail() {
