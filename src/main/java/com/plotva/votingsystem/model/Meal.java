@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "meals", uniqueConstraints = @UniqueConstraint(columnNames = {"restaurant_id", "name"}, name = "meal_unique_name_idx"))
-public class Meal  extends AbstractNamedEntity{
+public class Meal extends AbstractNamedEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
@@ -20,6 +20,7 @@ public class Meal  extends AbstractNamedEntity{
     private Restaurant restaurant;
 
     @Column(name = "price", nullable = false)
+    @Range(min = 1, max = 1000)
     private int price;
 
     @Column(name = "date", nullable = false, columnDefinition = "DATE DEFAULT now()")
@@ -48,7 +49,7 @@ public class Meal  extends AbstractNamedEntity{
         this.restaurant = restaurant;
     }
 
-    private int getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -56,7 +57,7 @@ public class Meal  extends AbstractNamedEntity{
         this.price = price;
     }
 
-    private LocalDate getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

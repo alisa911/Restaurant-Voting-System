@@ -14,6 +14,7 @@ public class MealTo extends BaseTo {
 
     private int restaurantId;
 
+    @Range(min = 1, max = 1000)
     private int price;
 
 

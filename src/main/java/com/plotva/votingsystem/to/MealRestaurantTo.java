@@ -1,5 +1,7 @@
 package com.plotva.votingsystem.to;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -8,6 +10,7 @@ public class MealRestaurantTo extends BaseTo {
     @NotBlank
     private String name;
 
+    @Range(min = 1, max = 1000)
     private int price;
 
     private RestaurantTo restaurant;
