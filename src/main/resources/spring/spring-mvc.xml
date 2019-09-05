@@ -23,5 +23,14 @@
         </mvc:argument-resolvers>
     </mvc:annotation-driven>
 
+    <bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean" id="conversionService">
+        <property name="formatters">
+            <set>
+                <bean class="com.plotva.votingsystem.web.DateTimeFormatters.LocalTimeFormatter"/>
+                <bean class="com.plotva.votingsystem.web.DateTimeFormatters.LocalDateFormatter"/>
+            </set>
+        </property>
+    </bean>
+
     <context:component-scan base-package="com.plotva.votingsystem.**.web"/>
 </beans>
