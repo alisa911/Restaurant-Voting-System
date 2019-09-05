@@ -3,7 +3,6 @@ package com.plotva.votingsystem.repository;
 import com.plotva.votingsystem.model.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.domain.Sort;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,10 +22,9 @@ public class UserRepository {
     }
 
     public User get(int id) {
-        return crudRepository.findById(id).orElse(null);
+        return crudRepository.getById(id);
     }
 
-    @Transactional
     public boolean delete(int id) {
         return crudRepository.deleteUserById(id) != 0;
     }

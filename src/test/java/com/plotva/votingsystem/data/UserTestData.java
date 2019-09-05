@@ -5,6 +5,7 @@ import com.plotva.votingsystem.model.User;
 
 import java.util.Arrays;
 import java.util.Collections;
+
 import java.util.Date;
 
 
@@ -20,7 +21,7 @@ public class UserTestData {
     }
 
     public static void assertMatch(User actual, User expected) {
-        assertThat(actual).isEqualToIgnoringGivenFields(expected, "registered");
+        assertThat(actual).isEqualToIgnoringGivenFields(expected, "registered", "password");
     }
 
     public static void assertMatch(Iterable<User> actual, User... expected) {
@@ -28,7 +29,7 @@ public class UserTestData {
     }
 
     public static void assertMatch(Iterable<User> actual, Iterable<User> expected) {
-        assertThat(actual).usingElementComparatorIgnoringFields("registered").isEqualTo(expected);
+        assertThat(actual).usingElementComparatorIgnoringFields("registered", "password").isEqualTo(expected);
     }
 
 }

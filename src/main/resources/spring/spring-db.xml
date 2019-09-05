@@ -37,6 +37,7 @@
             <map>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).FORMAT_SQL}" value="${hibernate.format_sql}"/>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}" value="${hibernate.use_sql_comments}"/>
+                <entry key="#{T(org.hibernate.cfg.AvailableSettings).JPA_PROXY_COMPLIANCE}" value="false"/>
                 <entry key="hibernate.javax.cache.missing_cache_strategy" value="create"/>
 
                 <entry key="javax.persistence.validation.group.pre-persist" value="com.plotva.votingsystem.web.View$Persist"/>

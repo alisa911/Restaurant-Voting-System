@@ -1,5 +1,6 @@
 package com.plotva.votingsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.plotva.votingsystem.HasEmail;
 import com.plotva.votingsystem.web.View;
 import org.hibernate.annotations.BatchSize;
@@ -13,6 +14,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Collections;
+
 import java.util.Date;
 import java.util.Set;
 
@@ -30,12 +32,14 @@ public class User extends AbstractNamedEntity implements HasEmail {
 
     @Column(name = "password", nullable = false)
     @NotBlank
-    @Size(min = 5, max = 50)
+    @Size(min = 5, max = 100)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Column(name = "registered", nullable = false, columnDefinition = "TIMESTAMP DEFAULT now()")
     @NotNull
-    private Date registered= new Date();
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Date registered = new Date();
 
     @Column(name = "enabled", nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
     private boolean enabled;
@@ -116,7 +120,6 @@ public class User extends AbstractNamedEntity implements HasEmail {
     public String toString() {
         return "User{" +
                 "email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 ", registered=" + registered +
                 ", enabled=" + enabled +
                 ", roles=" + roles +
