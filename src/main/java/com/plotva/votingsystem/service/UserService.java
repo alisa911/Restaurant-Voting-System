@@ -3,6 +3,8 @@ package com.plotva.votingsystem.service;
 import com.plotva.votingsystem.AuthorizedUser;
 import com.plotva.votingsystem.model.User;
 import com.plotva.votingsystem.repository.UserRepository;
+import com.plotva.votingsystem.to.UserTo;
+import com.plotva.votingsystem.util.UserUtil;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Scope;
@@ -12,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.List;
@@ -61,6 +64,15 @@ public class UserService implements UserDetailsService {
     public void update(User user) {
         Assert.notNull(user, "User must be not null");
         userRepository.save(prepareToSave(user, passwordEncoder));
+    }
+
+    @CacheEvict(value = "users", allEntries = true)
+    @Transactional
+    public void update(UserTo userTo) {
+        Assert.notNull(userTo, "UserTo must be not null");
+        User user = get(userTo.getId());
+        User updated = UserUtil.updateFromTo(user, userTo);
+        userRepository.save(prepareToSave(updated, passwordEncoder ));
     }
 
     @Override
