@@ -18,7 +18,7 @@ import static com.plotva.votingsystem.web.SecurityUtil.authUserId;
 @RequestMapping(ProfileRestController.REST_URL)
 public class ProfileRestController extends AbstractUserController{
 
-    static final String REST_URL = "/profile";
+    public static final String REST_URL = "/profile";
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public User get() {

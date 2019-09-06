@@ -2,6 +2,7 @@ package com.plotva.votingsystem.data;
 
 import com.plotva.votingsystem.model.Role;
 import com.plotva.votingsystem.model.User;
+import com.plotva.votingsystem.to.UserTo;
 import com.plotva.votingsystem.util.JsonUtil;
 import org.springframework.test.web.servlet.ResultMatcher;
 
@@ -46,6 +47,10 @@ public class UserTestData {
     }
 
     public static String jsonWithPassword(User user, String passw) {
+        return JsonUtil.writeAdditionProps(user, "password", passw);
+    }
+
+    public static String jsonWithPassword(UserTo user, String passw) {
         return JsonUtil.writeAdditionProps(user, "password", passw);
     }
 

@@ -2,7 +2,6 @@ package com.plotva.votingsystem.web;
 
 import com.plotva.votingsystem.model.User;
 import com.plotva.votingsystem.util.JsonUtil;
-import com.plotva.votingsystem.web.controller.userController.AdminRestController;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
@@ -17,17 +16,16 @@ import static com.plotva.votingsystem.UtilTest.readFromJson;
 import static com.plotva.votingsystem.UtilTest.userAuth;
 import static com.plotva.votingsystem.data.UserTestData.*;
 import static com.plotva.votingsystem.model.Role.ROLE_USER;
+import static com.plotva.votingsystem.web.controller.userController.AdminRestController.REST_URL;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class AdminControllerTest extends AbstractControllerTest {
 
-    private static final String REST_URL = AdminRestController.REST_URL + "/";
-
     @Test
     void get() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + + FIRST_USER_ID)
+        mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + "/" + FIRST_USER_ID)
                 .with(userAuth(FIRST_USER)))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -47,7 +45,7 @@ public class AdminControllerTest extends AbstractControllerTest {
 
     @Test
     void getByEmail() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + "by?email=" + FIRST_USER.getEmail())
+        mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + "/by?email=" + FIRST_USER.getEmail())
                 .with(userAuth(FIRST_USER)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -75,7 +73,7 @@ public class AdminControllerTest extends AbstractControllerTest {
         User updated = new User(FIRST_USER);
         updated.setName("UpdatingName");
         updated.setEmail("updatingemail@gmail.com");
-        mockMvc.perform(MockMvcRequestBuilders.put(REST_URL + FIRST_USER_ID)
+        mockMvc.perform(MockMvcRequestBuilders.put(REST_URL + "/" + FIRST_USER_ID)
                 .with(userAuth(FIRST_USER))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonWithPassword(updated, updated.getPassword())))
@@ -86,7 +84,7 @@ public class AdminControllerTest extends AbstractControllerTest {
 
     @Test
     void delete() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete(REST_URL + FIRST_USER_ID)
+        mockMvc.perform(MockMvcRequestBuilders.delete(REST_URL + "/" + FIRST_USER_ID)
                 .with(userAuth(FIRST_USER)))
                 .andDo(print())
                 .andExpect(status().isNoContent());
@@ -124,7 +122,7 @@ public class AdminControllerTest extends AbstractControllerTest {
     void updateInvalid() throws Exception {
         User updated = new User(FIRST_USER);
         updated.setName("");
-        mockMvc.perform(MockMvcRequestBuilders.put(REST_URL + FIRST_USER_ID)
+        mockMvc.perform(MockMvcRequestBuilders.put(REST_URL + "/" + FIRST_USER_ID)
                 .contentType(MediaType.APPLICATION_JSON)
                 .with(userAuth(FIRST_USER))
                 .content(JsonUtil.writeValue(updated)))

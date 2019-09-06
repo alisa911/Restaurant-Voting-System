@@ -5,13 +5,12 @@ import com.plotva.votingsystem.service.MealService;
 import com.plotva.votingsystem.to.MealRestaurantTo;
 import com.plotva.votingsystem.to.MealTo;
 import com.plotva.votingsystem.util.JsonUtil;
-import com.plotva.votingsystem.web.controller.MealRestController;
 import org.junit.jupiter.api.Test;
-import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -22,21 +21,20 @@ import static com.plotva.votingsystem.data.MealTestData.*;
 import static com.plotva.votingsystem.UtilTest.*;
 import static com.plotva.votingsystem.data.RestaurantTestData.*;
 import static com.plotva.votingsystem.data.UserTestData.FIRST_USER;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static com.plotva.votingsystem.web.controller.MealRestController.REST_URL;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;;
 
 public class MealRestControllerTest extends AbstractControllerTest {
 
-    private static final String REST_URL = MealRestController.REST_URL + "/";
     @Autowired
     private MealService service;
 
     @Test
-    void testGet() throws Exception {
+    void get() throws Exception {
         MealTo meal = modelMapper.map(FIRST_MEAL, MealTo.class);
-        mockMvc.perform(get(REST_URL + FIRST_MEAL_ID))
+        mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + "/" + FIRST_MEAL_ID))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(contentJson(meal));
@@ -46,7 +44,7 @@ public class MealRestControllerTest extends AbstractControllerTest {
     void getAll() throws Exception {
         List<MealTo> expected = modelMapper.map(Arrays.asList(FOURTH_MEAL, FIFTH_MEAL, SIXTH_MEAL), new TypeToken<List<MealTo>>() {}.getType());
 
-        mockMvc.perform(get(REST_URL + "all/" + THIRD_RESTAURANT_ID))
+        mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + "/all/" + THIRD_RESTAURANT_ID))
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(contentJson(expected))
@@ -57,7 +55,7 @@ public class MealRestControllerTest extends AbstractControllerTest {
     void getAllForDate() throws Exception {
         List<MealTo> expected = Collections.singletonList(modelMapper.map(FIRST_MEAL, MealTo.class));
 
-        mockMvc.perform(get(REST_URL + "all/" + FIRST_RESTAURANT_ID + "?date=" + LocalDate.of(2019, 8, 19)))
+        mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + "/all/" + FIRST_RESTAURANT_ID + "?date=" + LocalDate.of(2019, 8, 19)))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -65,27 +63,27 @@ public class MealRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    void testGetWithRestaurant() throws Exception {
+    void getWithRestaurant() throws Exception {
         Meal meal = new Meal(FOURTH_MEAL);
         meal.setRestaurant(THIRD_RESTAURANT);
         meal.getRestaurant().setMenu(THIRD_RESTAURANT_MENU);
         MealRestaurantTo expected = modelMapper.map(FOURTH_MEAL, MealRestaurantTo.class);
 
-        mockMvc.perform(get(REST_URL + "with/" + FOURTH_MEAL_ID))
+        mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + "/with/" + FOURTH_MEAL_ID))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(contentJson(expected));
     }
 
     @Test
-    void testUpdate() throws Exception {
+    void update() throws Exception {
         Meal meal = new Meal(FIRST_MEAL);
         meal.setName("New meal");
         meal.setPrice(10);
 
         MealTo updated = modelMapper.map(meal, MealTo.class);
 
-        mockMvc.perform(put(REST_URL + FIRST_MEAL_ID)
+        mockMvc.perform(MockMvcRequestBuilders.put(REST_URL + "/" + FIRST_MEAL_ID)
                 .with(userAuth(FIRST_USER))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated)))
@@ -95,8 +93,8 @@ public class MealRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    void testDelete() throws Exception {
-        mockMvc.perform(delete(REST_URL + FOURTH_MEAL_ID)
+    void delete() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete(REST_URL + "/" + FOURTH_MEAL_ID)
                 .with(userAuth(FIRST_USER)))
                 .andExpect(status().isNoContent());
         assertMatch(service.getAll(THIRD_RESTAURANT_ID), FIFTH_MEAL, SIXTH_MEAL);
@@ -106,7 +104,7 @@ public class MealRestControllerTest extends AbstractControllerTest {
     void create() throws Exception {
         Meal meal = new Meal(null, "Fresh", FIRST_RESTAURANT, 90, LocalDate.of(2019, 9, 4));
         MealTo expected = modelMapper.map(meal, MealTo.class);
-        ResultActions actions = mockMvc.perform(post(REST_URL)
+        ResultActions actions = mockMvc.perform(MockMvcRequestBuilders.post(REST_URL)
                 .with(userAuth(FIRST_USER))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(expected)))
