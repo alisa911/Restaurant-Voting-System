@@ -3,9 +3,13 @@ package com.plotva.votingsystem.data;
 import com.plotva.votingsystem.model.Restaurant;
 import com.plotva.votingsystem.to.RestaurantTo;
 import com.plotva.votingsystem.to.RestaurantVoteTo;
+import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.util.Arrays;
+import java.util.List;
 
+import static com.plotva.votingsystem.UtilTest.readFromJsonMvcResult;
+import static com.plotva.votingsystem.UtilTest.readListFromJsonMvcResult;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -44,5 +48,12 @@ public class RestaurantTestData {
         assertThat(actual).usingElementComparatorIgnoringFields("menu").isEqualTo(expected);
     }
 
+    public static ResultMatcher contentJson(List<RestaurantTo> expected) {
+        return result -> assertMatchTo(readListFromJsonMvcResult(result, RestaurantTo.class), expected);
+    }
+
+    public static ResultMatcher contentJson(RestaurantTo expected) {
+        return result -> assertMatchTo(readFromJsonMvcResult(result, RestaurantTo.class), expected);
+    }
 
 }
