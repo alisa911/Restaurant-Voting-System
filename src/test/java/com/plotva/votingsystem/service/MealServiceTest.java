@@ -10,8 +10,8 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.plotva.votingsystem.data.MealUtilData.*;
-import static com.plotva.votingsystem.data.RestaurantUtilData.*;
+import static com.plotva.votingsystem.data.MealDataUtil.*;
+import static com.plotva.votingsystem.data.RestaurantDataUtil.*;
 
 public class MealServiceTest extends AbstractServiceTest {
     @Autowired

@@ -9,7 +9,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static com.plotva.votingsystem.UtilTest.*;
-import static com.plotva.votingsystem.data.UserUtilData.*;
+import static com.plotva.votingsystem.data.UserDataUtil.*;
 import static com.plotva.votingsystem.web.controller.user.ProfileRestController.REST_URL;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;

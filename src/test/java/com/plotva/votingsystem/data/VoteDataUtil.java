@@ -12,17 +12,17 @@ import static com.plotva.votingsystem.UtilTest.readFromJsonMvcResult;
 import static com.plotva.votingsystem.UtilTest.readListFromJsonMvcResult;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static com.plotva.votingsystem.data.RestaurantUtilData.FIRST_RESTAURANT;
-import static com.plotva.votingsystem.data.RestaurantUtilData.SECOND_RESTAURANT;
-import static com.plotva.votingsystem.data.UserUtilData.FIRST_USER;
+import static com.plotva.votingsystem.data.RestaurantDataUtil.FIRST_RESTAURANT;
+import static com.plotva.votingsystem.data.RestaurantDataUtil.SECOND_RESTAURANT;
+import static com.plotva.votingsystem.data.UserDataUtil.FIRST_USER;
 
-public class VoteUtilData {
+public class VoteDataUtil {
 
     public static final int FIRST_VOTE_ID = 1011;
     public static final Vote FIRST_VOTE = new Vote(FIRST_VOTE_ID, FIRST_USER, SECOND_RESTAURANT, LocalDate.of(2019, 8, 20));
     public static final Vote SECOND_VOTE = new Vote(FIRST_VOTE_ID + 1, FIRST_USER, FIRST_RESTAURANT, LocalDate.of(2019, 8, 21));
 
-    private VoteUtilData() {
+    private VoteDataUtil() {
     }
 
     public static void assertMatch(Vote actual, Vote expected) {

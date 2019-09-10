@@ -14,7 +14,7 @@ import java.util.Set;
 
 import static com.plotva.votingsystem.UtilTest.readFromJson;
 import static com.plotva.votingsystem.UtilTest.userAuth;
-import static com.plotva.votingsystem.data.UserUtilData.*;
+import static com.plotva.votingsystem.data.UserDataUtil.*;
 import static com.plotva.votingsystem.model.Role.ROLE_USER;
 import static com.plotva.votingsystem.web.controller.user.AdminRestController.REST_URL;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;

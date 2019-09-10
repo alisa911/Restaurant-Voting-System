@@ -11,9 +11,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import static com.plotva.votingsystem.data.RestaurantUtilData.*;
-import static com.plotva.votingsystem.data.UserUtilData.*;
-import static com.plotva.votingsystem.data.VoteUtilData.*;
+import static com.plotva.votingsystem.data.RestaurantDataUtil.*;
+import static com.plotva.votingsystem.data.UserDataUtil.*;
+import static com.plotva.votingsystem.data.VoteDataUtil.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;

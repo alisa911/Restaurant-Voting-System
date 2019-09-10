@@ -11,11 +11,11 @@ import java.util.List;
 
 import static com.plotva.votingsystem.UtilTest.readListFromJsonMvcResult;
 import static com.plotva.votingsystem.UtilTest.readFromJsonMvcResult;
-import static com.plotva.votingsystem.data.RestaurantUtilData.*;
+import static com.plotva.votingsystem.data.RestaurantDataUtil.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MealUtilData {
+public class MealDataUtil {
     public static final int FIRST_MEAL_ID = 1005;
     public static final int FOURTH_MEAL_ID = 1008;
     public static final Meal FIRST_MEAL = new Meal(FIRST_MEAL_ID, "Fish", FIRST_RESTAURANT, 10, LocalDate.of(2019, 8, 19));
@@ -26,7 +26,7 @@ public class MealUtilData {
     public static final Meal SIXTH_MEAL = new Meal(FIRST_MEAL_ID + 5, "IceCream", THIRD_RESTAURANT, 20, LocalDate.of(2019, 8, 18));
     public static final List<Meal> THIRD_RESTAURANT_MENU = Arrays.asList(FOURTH_MEAL, FIFTH_MEAL, SIXTH_MEAL);
 
-    private MealUtilData() {
+    private MealDataUtil() {
     }
 
     public static void assertMatch(Meal actual, Meal expected) {

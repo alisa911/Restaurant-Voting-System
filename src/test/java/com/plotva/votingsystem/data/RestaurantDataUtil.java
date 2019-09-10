@@ -13,7 +13,7 @@ import static com.plotva.votingsystem.UtilTest.readListFromJsonMvcResult;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class RestaurantUtilData {
+public class RestaurantDataUtil {
     public static final int FIRST_RESTAURANT_ID = 1002;
     public static final int SECOND_RESTAURANT_ID = 1003;
     public static final int THIRD_RESTAURANT_ID = 1004;
@@ -21,7 +21,7 @@ public class RestaurantUtilData {
     public static final Restaurant SECOND_RESTAURANT = new Restaurant(SECOND_RESTAURANT_ID, "Restaurant2");
     public static final Restaurant THIRD_RESTAURANT = new Restaurant(THIRD_RESTAURANT_ID, "Restaurant3");
 
-    private RestaurantUtilData() {
+    private RestaurantDataUtil() {
     }
 
     public static void assertMatch(Restaurant actual, Restaurant expected) {

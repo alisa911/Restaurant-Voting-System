@@ -16,10 +16,10 @@ import java.util.List;
 
 import static com.plotva.votingsystem.UtilTest.readFromJson;
 import static com.plotva.votingsystem.UtilTest.userAuth;
-import static com.plotva.votingsystem.data.RestaurantUtilData.*;
-import static com.plotva.votingsystem.data.UserUtilData.FIRST_USER;
-import static com.plotva.votingsystem.data.UserUtilData.FIRST_USER_ID;
-import static com.plotva.votingsystem.data.VoteUtilData.*;
+import static com.plotva.votingsystem.data.RestaurantDataUtil.*;
+import static com.plotva.votingsystem.data.UserDataUtil.FIRST_USER;
+import static com.plotva.votingsystem.data.UserDataUtil.FIRST_USER_ID;
+import static com.plotva.votingsystem.data.VoteDataUtil.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

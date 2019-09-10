@@ -16,13 +16,13 @@ import static com.plotva.votingsystem.UtilTest.readFromJsonMvcResult;
 import static com.plotva.votingsystem.UtilTest.readListFromJsonMvcResult;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class UserUtilData {
+public class UserDataUtil {
     public static final int FIRST_USER_ID = 1000;
     public static final String FIRST_USER_EMAIL = "qweqwe@gmail.com";
     public static final User FIRST_USER = new User(FIRST_USER_ID, "Nataly", new Date(), FIRST_USER_EMAIL, "admin", true, Collections.singleton(Role.ROLE_ADMIN));
     public static final User SECOND_USER = new User(FIRST_USER_ID + 1, "Alisa", new Date(), "asdasd@gmail.com", "user", true, Collections.singleton(Role.ROLE_USER));
 
-    private UserUtilData() {
+    private UserDataUtil() {
     }
 
     public static void assertMatch(User actual, User expected) {

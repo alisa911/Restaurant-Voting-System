@@ -16,7 +16,7 @@ import java.util.Date;
 
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static com.plotva.votingsystem.data.UserUtilData.*;
+import static com.plotva.votingsystem.data.UserDataUtil.*;
 
 
 public class UserServiceTest extends AbstractServiceTest {
