@@ -24,6 +24,7 @@ public class RestaurantService {
         Assert.notNull(restaurant, "Restaurant must be not null");
         return repository.save(restaurant);
     }
+
     @CacheEvict(value = "meals", allEntries = true)
     public void update(Restaurant restaurant) {
         Assert.notNull(restaurant, "Restaurant must be not null");

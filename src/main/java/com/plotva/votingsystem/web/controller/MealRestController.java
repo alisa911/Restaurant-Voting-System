@@ -101,23 +101,23 @@ public class MealRestController {
     private List<MealTo> createAll(List<MealTo> meals) {
         meals.forEach(ValidationUtil::checkNew);
         log.info("Create meals from list {}", meals);
-        List<Meal> mealsList = modelMapper.map(meals, new TypeToken<List<Meal>>() {}.getType());
-        return modelMapper.map(service.create(mealsList), new TypeToken<List<MealTo>>() {}.getType());
+        List<Meal> mealsList = modelMapper.map(meals, new TypeToken<List<Meal>>() {
+        }.getType());
+        return modelMapper.map(service.create(mealsList), new TypeToken<List<MealTo>>() {
+        }.getType());
     }
 
     private List<MealTo> getAll(int restaurantId) {
         log.info("Get all meals of restaurant {}", restaurantId);
-        return modelMapper.map(service.getAll(restaurantId), new TypeToken<List<MealTo>>() {}.getType());
+        return modelMapper.map(service.getAll(restaurantId), new TypeToken<List<MealTo>>() {
+        }.getType());
     }
 
     private List<MealTo> getAllByDate(int restaurantId, @DateTimeFormat(iso = DATE) LocalDate date) {
         log.info("Get all meals of restaurant {} by date {}", restaurantId, date);
-        return modelMapper.map(service.getAllByDate(restaurantId, date), new TypeToken<List<MealTo>>() {}.getType());
+        return modelMapper.map(service.getAllByDate(restaurantId, date), new TypeToken<List<MealTo>>() {
+        }.getType());
     }
-
-
-
-
 
 
 }

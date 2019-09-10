@@ -20,10 +20,6 @@ public class UtilTest {
         return JsonUtil.readValue(getContent(action.andReturn()), clazz);
     }
 
-    public static <T> List<T> readFromJsonList(ResultActions action, Class<T> clazz) throws UnsupportedEncodingException {
-        return JsonUtil.readValues(getContent(action.andReturn()), clazz);
-    }
-
     public static <T> T readFromJsonMvcResult(MvcResult result, Class<T> clazz) throws UnsupportedEncodingException {
         return JsonUtil.readValue(getContent(result), clazz);
     }

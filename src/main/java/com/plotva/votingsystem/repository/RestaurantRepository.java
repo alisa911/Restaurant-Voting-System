@@ -16,6 +16,7 @@ public class RestaurantRepository {
     public RestaurantRepository(CrudRestaurantRepository repository) {
         this.repository = repository;
     }
+
     @Transactional
     public Restaurant save(Restaurant restaurant) {
         return repository.save(restaurant);

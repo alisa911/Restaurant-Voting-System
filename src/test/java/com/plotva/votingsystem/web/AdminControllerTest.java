@@ -14,9 +14,9 @@ import java.util.Set;
 
 import static com.plotva.votingsystem.UtilTest.readFromJson;
 import static com.plotva.votingsystem.UtilTest.userAuth;
-import static com.plotva.votingsystem.data.UserTestData.*;
+import static com.plotva.votingsystem.data.UserUtilData.*;
 import static com.plotva.votingsystem.model.Role.ROLE_USER;
-import static com.plotva.votingsystem.web.controller.userController.AdminRestController.REST_URL;
+import static com.plotva.votingsystem.web.controller.user.AdminRestController.REST_URL;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -54,7 +54,7 @@ public class AdminControllerTest extends AbstractControllerTest {
 
     @Test
     void create() throws Exception {
-        User expected = new User(null, "NewUser", new Date(),"new@gmail.com", "newPass", true, Set.of(ROLE_USER));
+        User expected = new User(null, "NewUser", new Date(), "new@gmail.com", "newPass", true, Set.of(ROLE_USER));
         ResultActions action = mockMvc.perform(MockMvcRequestBuilders.post(REST_URL)
                 .with(userAuth(FIRST_USER))
                 .contentType(MediaType.APPLICATION_JSON)

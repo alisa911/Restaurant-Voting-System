@@ -9,8 +9,8 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static com.plotva.votingsystem.UtilTest.*;
-import static com.plotva.votingsystem.data.UserTestData.*;
-import static com.plotva.votingsystem.web.controller.userController.ProfileRestController.REST_URL;
+import static com.plotva.votingsystem.data.UserUtilData.*;
+import static com.plotva.votingsystem.web.controller.user.ProfileRestController.REST_URL;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -34,7 +34,7 @@ public class ProfileControllerTest extends AbstractControllerTest {
 
     @Test
     void delete() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete(REST_URL+"/")
+        mockMvc.perform(MockMvcRequestBuilders.delete(REST_URL + "/")
                 .with(userAuth(SECOND_USER)))
                 .andExpect(status().isNoContent());
         assertMatch(userService.getAll(), FIRST_USER);

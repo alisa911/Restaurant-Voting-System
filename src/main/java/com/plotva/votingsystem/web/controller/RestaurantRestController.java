@@ -77,7 +77,8 @@ public class RestaurantRestController {
     @GetMapping("/all")
     public List<RestaurantTo> getAll() {
         log.info("Get all restaurants");
-        return modelMapper.map(service.getAll(), new TypeToken<List<RestaurantTo>>() {}.getType());
+        return modelMapper.map(service.getAll(), new TypeToken<List<RestaurantTo>>() {
+        }.getType());
     }
 
 

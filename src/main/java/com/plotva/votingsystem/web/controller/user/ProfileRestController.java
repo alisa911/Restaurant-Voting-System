@@ -1,4 +1,4 @@
-package com.plotva.votingsystem.web.controller.userController;
+package com.plotva.votingsystem.web.controller.user;
 
 import com.plotva.votingsystem.model.User;
 import com.plotva.votingsystem.to.UserTo;
@@ -16,7 +16,7 @@ import static com.plotva.votingsystem.web.SecurityUtil.authUserId;
 
 @RestController
 @RequestMapping(ProfileRestController.REST_URL)
-public class ProfileRestController extends AbstractUserController{
+public class ProfileRestController extends AbstractUserController {
 
     public static final String REST_URL = "/profile";
 

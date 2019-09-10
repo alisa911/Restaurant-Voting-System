@@ -17,10 +17,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static com.plotva.votingsystem.data.MealTestData.*;
+import static com.plotva.votingsystem.data.MealUtilData.*;
 import static com.plotva.votingsystem.UtilTest.*;
-import static com.plotva.votingsystem.data.RestaurantTestData.*;
-import static com.plotva.votingsystem.data.UserTestData.FIRST_USER;
+import static com.plotva.votingsystem.data.RestaurantUtilData.*;
+import static com.plotva.votingsystem.data.UserUtilData.FIRST_USER;
 import static com.plotva.votingsystem.web.controller.MealRestController.REST_URL;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -42,7 +42,8 @@ public class MealRestControllerTest extends AbstractControllerTest {
 
     @Test
     void getAll() throws Exception {
-        List<MealTo> expected = modelMapper.map(Arrays.asList(FOURTH_MEAL, FIFTH_MEAL, SIXTH_MEAL), new TypeToken<List<MealTo>>() {}.getType());
+        List<MealTo> expected = modelMapper.map(Arrays.asList(FOURTH_MEAL, FIFTH_MEAL, SIXTH_MEAL), new TypeToken<List<MealTo>>() {
+        }.getType());
 
         mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + "/all/" + THIRD_RESTAURANT_ID))
                 .andDo(print())
@@ -114,10 +115,12 @@ public class MealRestControllerTest extends AbstractControllerTest {
         MealTo returned = readFromJson(actions, MealTo.class);
         expected.setId(returned.getId());
 
-        List<MealTo> expectedList = modelMapper.map(Arrays.asList(expected, FIRST_MEAL), new TypeToken<List<MealTo>>() {}.getType());
+        List<MealTo> expectedList = modelMapper.map(Arrays.asList(expected, FIRST_MEAL), new TypeToken<List<MealTo>>() {
+        }.getType());
 
         assertMatchMealTo(returned, expected);
-        assertMatchMealTo(modelMapper.map(service.getAll(FIRST_RESTAURANT_ID), new TypeToken<List<MealTo>>() {}.getType()), expectedList);
+        assertMatchMealTo(modelMapper.map(service.getAll(FIRST_RESTAURANT_ID), new TypeToken<List<MealTo>>() {
+        }.getType()), expectedList);
     }
 
 }

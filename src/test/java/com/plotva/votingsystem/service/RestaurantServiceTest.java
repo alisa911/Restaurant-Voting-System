@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.plotva.votingsystem.data.RestaurantTestData.*;
+import static com.plotva.votingsystem.data.RestaurantUtilData.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 

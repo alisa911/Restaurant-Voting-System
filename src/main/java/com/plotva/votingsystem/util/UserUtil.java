@@ -18,10 +18,6 @@ public class UserUtil {
         return user;
     }
 
-    public static UserTo parseTo(User user) {
-        return new UserTo(user.getId(), user.getName(), user.getEmail(), user.getPassword());
-    }
-
     public static User prepareToSave(User user, PasswordEncoder passwordEncoder) {
         String password = user.getPassword();
         user.setPassword(StringUtils.hasText(password) ? passwordEncoder.encode(password) : password);

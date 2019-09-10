@@ -16,7 +16,7 @@ import java.util.Date;
 
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static com.plotva.votingsystem.data.UserTestData.*;
+import static com.plotva.votingsystem.data.UserUtilData.*;
 
 
 public class UserServiceTest extends AbstractServiceTest {
@@ -35,7 +35,7 @@ public class UserServiceTest extends AbstractServiceTest {
 
     @Test
     public void create() {
-        User newUser = new User(null, "NewUser", new Date(),"new@gmail.com", "newPass",true, Collections.singleton(Role.ROLE_USER));
+        User newUser = new User(null, "NewUser", new Date(), "new@gmail.com", "newPass", true, Collections.singleton(Role.ROLE_USER));
         User created = service.create(new User(newUser));
         newUser.setId(created.getId());
         assertMatch(created, newUser);

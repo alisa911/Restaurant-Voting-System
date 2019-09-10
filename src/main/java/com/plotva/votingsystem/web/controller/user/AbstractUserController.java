@@ -1,4 +1,4 @@
-package com.plotva.votingsystem.web.controller.userController;
+package com.plotva.votingsystem.web.controller.user;
 
 import com.plotva.votingsystem.model.User;
 import com.plotva.votingsystem.service.UserService;

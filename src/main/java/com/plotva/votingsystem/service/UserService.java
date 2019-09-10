@@ -72,7 +72,7 @@ public class UserService implements UserDetailsService {
         Assert.notNull(userTo, "UserTo must be not null");
         User user = get(userTo.getId());
         User updated = UserUtil.updateFromTo(user, userTo);
-        userRepository.save(prepareToSave(updated, passwordEncoder ));
+        userRepository.save(prepareToSave(updated, passwordEncoder));
     }
 
     @Override

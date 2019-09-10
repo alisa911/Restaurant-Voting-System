@@ -31,11 +31,11 @@ public class VoteRepository {
     }
 
     public Vote get(int id, int userId) {
-        return repository.getVoteByIdAndUser_id(id, userId);
+        return repository.getVoteByIdAndUserId(id, userId);
     }
 
     public List<Vote> getAll(int userId) {
-        return repository.getAllByUser_id(userId);
+        return repository.getAllByUserId(userId);
     }
 
     public int getCount(int restaurantId, LocalDate date) {
@@ -43,7 +43,7 @@ public class VoteRepository {
     }
 
     public boolean delete(int id, int userId) {
-        return repository.deleteVoteByIdAndUser_id(id, userId) != 0;
+        return repository.deleteVoteByIdAndUserId(id, userId) != 0;
     }
 
 

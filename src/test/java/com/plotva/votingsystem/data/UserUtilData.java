@@ -12,18 +12,17 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-
 import static com.plotva.votingsystem.UtilTest.readFromJsonMvcResult;
 import static com.plotva.votingsystem.UtilTest.readListFromJsonMvcResult;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class UserTestData {
+public class UserUtilData {
     public static final int FIRST_USER_ID = 1000;
     public static final String FIRST_USER_EMAIL = "qweqwe@gmail.com";
     public static final User FIRST_USER = new User(FIRST_USER_ID, "Nataly", new Date(), FIRST_USER_EMAIL, "admin", true, Collections.singleton(Role.ROLE_ADMIN));
     public static final User SECOND_USER = new User(FIRST_USER_ID + 1, "Alisa", new Date(), "asdasd@gmail.com", "user", true, Collections.singleton(Role.ROLE_USER));
 
-    private UserTestData() {
+    private UserUtilData() {
     }
 
     public static void assertMatch(User actual, User expected) {

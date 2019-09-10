@@ -11,14 +11,14 @@ import java.util.List;
 
 import static com.plotva.votingsystem.UtilTest.readListFromJsonMvcResult;
 import static com.plotva.votingsystem.UtilTest.readFromJsonMvcResult;
-import static com.plotva.votingsystem.data.RestaurantTestData.*;
+import static com.plotva.votingsystem.data.RestaurantUtilData.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MealTestData {
+public class MealUtilData {
     public static final int FIRST_MEAL_ID = 1005;
     public static final int FOURTH_MEAL_ID = 1008;
-    public static final Meal FIRST_MEAL = new Meal(FIRST_MEAL_ID, "Fish", FIRST_RESTAURANT, 10 ,LocalDate.of(2019, 8, 19));
+    public static final Meal FIRST_MEAL = new Meal(FIRST_MEAL_ID, "Fish", FIRST_RESTAURANT, 10, LocalDate.of(2019, 8, 19));
     public static final Meal SECOND_MEAL = new Meal(FIRST_MEAL_ID + 1, "Salad", SECOND_RESTAURANT, 5, LocalDate.of(2019, 8, 19));
     public static final Meal THIRD_MEAL = new Meal(FIRST_MEAL_ID + 2, "Water", SECOND_RESTAURANT, 1, LocalDate.of(2019, 8, 19));
     public static final Meal FOURTH_MEAL = new Meal(FOURTH_MEAL_ID, "Burger", THIRD_RESTAURANT, 40, LocalDate.of(2019, 8, 18));
@@ -26,7 +26,7 @@ public class MealTestData {
     public static final Meal SIXTH_MEAL = new Meal(FIRST_MEAL_ID + 5, "IceCream", THIRD_RESTAURANT, 20, LocalDate.of(2019, 8, 18));
     public static final List<Meal> THIRD_RESTAURANT_MENU = Arrays.asList(FOURTH_MEAL, FIFTH_MEAL, SIXTH_MEAL);
 
-    private MealTestData() {
+    private MealUtilData() {
     }
 
     public static void assertMatch(Meal actual, Meal expected) {

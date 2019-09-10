@@ -32,11 +32,13 @@ public class MealService {
         Assert.notNull(meal, "Meals list must be not null");
         return repository.save(meal);
     }
+
     @CacheEvict(value = "meals", allEntries = true)
     public void update(Meal meal) {
         Assert.notNull(meal, "Meal must be not null");
         repository.save(meal);
     }
+
     @Cacheable("meals")
     public List<Meal> getAll(int restaurantId) {
         return repository.getAll(restaurantId);

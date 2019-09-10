@@ -1,7 +1,6 @@
 package com.plotva.votingsystem.util;
 
 import com.plotva.votingsystem.HasId;
-import com.plotva.votingsystem.to.BaseTo;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -24,7 +23,7 @@ public class ValidationUtil {
         return object;
     }
 
-    public static void checkNotFound(boolean isFound, String message)  {
+    public static void checkNotFound(boolean isFound, String message) {
         if (!isFound) {
             throw new NotFoundException("Not found entity with " + message);
         }

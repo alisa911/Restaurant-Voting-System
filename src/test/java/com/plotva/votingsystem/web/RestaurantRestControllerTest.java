@@ -4,7 +4,6 @@ import com.plotva.votingsystem.model.Restaurant;
 import com.plotva.votingsystem.service.RestaurantService;
 import com.plotva.votingsystem.to.RestaurantTo;
 import com.plotva.votingsystem.util.JsonUtil;
-import com.plotva.votingsystem.web.controller.MealRestController;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +16,8 @@ import java.util.List;
 
 import static com.plotva.votingsystem.UtilTest.readFromJson;
 import static com.plotva.votingsystem.UtilTest.userAuth;
-import static com.plotva.votingsystem.data.MealTestData.THIRD_RESTAURANT_MENU;
-import static com.plotva.votingsystem.data.RestaurantTestData.*;
-import static com.plotva.votingsystem.data.UserTestData.FIRST_USER;
-import static com.plotva.votingsystem.data.UserTestData.SECOND_USER;
+import static com.plotva.votingsystem.data.RestaurantUtilData.*;
+import static com.plotva.votingsystem.data.UserUtilData.FIRST_USER;
 import static com.plotva.votingsystem.web.controller.RestaurantRestController.REST_URL;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -43,8 +40,9 @@ public class RestaurantRestControllerTest extends AbstractControllerTest {
 
     @Test
     void getAll() throws Exception {
-        List<RestaurantTo> expected = modelMapper.map(Arrays.asList(FIRST_RESTAURANT, SECOND_RESTAURANT, THIRD_RESTAURANT), new TypeToken<List<RestaurantTo>>() {}.getType());
-        mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + "/"+  "all"))
+        List<RestaurantTo> expected = modelMapper.map(Arrays.asList(FIRST_RESTAURANT, SECOND_RESTAURANT, THIRD_RESTAURANT), new TypeToken<List<RestaurantTo>>() {
+        }.getType());
+        mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + "/" + "all"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -53,7 +51,7 @@ public class RestaurantRestControllerTest extends AbstractControllerTest {
 
     @Test
     void testDelete() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete(REST_URL + "/"+ FIRST_RESTAURANT_ID)
+        mockMvc.perform(MockMvcRequestBuilders.delete(REST_URL + "/" + FIRST_RESTAURANT_ID)
                 .with(userAuth(FIRST_USER)))
                 .andExpect(status().isNoContent());
 
@@ -81,7 +79,7 @@ public class RestaurantRestControllerTest extends AbstractControllerTest {
         Restaurant updated = new Restaurant(FIRST_RESTAURANT);
         updated.setName("Updated Name");
 
-        mockMvc.perform(MockMvcRequestBuilders.put(REST_URL + "/"+ FIRST_RESTAURANT_ID)
+        mockMvc.perform(MockMvcRequestBuilders.put(REST_URL + "/" + FIRST_RESTAURANT_ID)
                 .with(userAuth(FIRST_USER))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated)))
