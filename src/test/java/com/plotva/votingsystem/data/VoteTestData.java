@@ -2,10 +2,14 @@ package com.plotva.votingsystem.data;
 
 import com.plotva.votingsystem.model.Vote;
 import com.plotva.votingsystem.to.VoteTo;
+import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 
+import static com.plotva.votingsystem.UtilTest.readFromJsonMvcResult;
+import static com.plotva.votingsystem.UtilTest.readListFromJsonMvcResult;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import static com.plotva.votingsystem.data.RestaurantTestData.FIRST_RESTAURANT;
@@ -45,6 +49,22 @@ public class VoteTestData {
 
     public static void assertMatchVoteTo(VoteTo actual, VoteTo expected) {
         assertThat(actual).isEqualToComparingFieldByField(expected);
+    }
+
+    public static ResultMatcher contentJsonVoteTo(List<VoteTo> expected) {
+        return result -> assertMatchVoteTo(readListFromJsonMvcResult(result, VoteTo.class), expected);
+    }
+
+    public static ResultMatcher contentJsonVoteTo(VoteTo... expected) {
+        return result -> assertMatchVoteTo(readListFromJsonMvcResult(result, VoteTo.class), List.of(expected));
+    }
+
+    public static ResultMatcher contentJsonVoteTo(VoteTo expected) {
+        return result -> assertMatchVoteTo(readFromJsonMvcResult(result, VoteTo.class), expected);
+    }
+
+    public static ResultMatcher contentJsonVoteToArray(VoteTo expected) {
+        return result -> assertMatchVoteTo(readListFromJsonMvcResult(result, VoteTo.class), expected);
     }
 
 }
