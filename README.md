@@ -28,9 +28,12 @@ Each restaurant provides new menu each day.
 ---
 #### Launch
 
-$ mvn package
-$ mvn cargo:run
-localhost:8080/votingsystem
+- $ mvn package
+
+- $ mvn cargo:run
+
+- localhost:8080/votingsystem
+
 ---
 #### Users
 
