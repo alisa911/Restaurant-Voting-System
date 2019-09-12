@@ -1,8 +1,7 @@
 ## **Restaurant Voting System**
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0e6f5a2939fa4d50b3052ebd2db55ec2)](https://www.codacy.com/app/alisa911/Restaurant-voting-system?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=alisa911/Restaurant-voting-system&amp;utm_campaign=Badge_Grade)
 -------
-REST API using Hibernate/Spring/SpringMVC without frontend
-----
+### REST API using Hibernate/Spring/SpringMVC without frontend
 #### Task
 
 Build a voting system for deciding where to have lunch.
