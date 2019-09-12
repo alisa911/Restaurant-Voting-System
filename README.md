@@ -37,8 +37,9 @@ Each restaurant provides new menu each day.
 ---
 #### Users
 
-**Username** - qweqwe@gmail.com	 **Password** - admin **Role** - ADMIN
-**Username** - asdasd@gmail.com	 **Password** - user	**Role** - USER
+- **Username** - qweqwe@gmail.com	 **Password** - admin **Role** - ADMIN
+
+- **Username** - asdasd@gmail.com	 **Password** - user	**Role** - USER
 
 ---
 
