@@ -44,34 +44,33 @@ Each restaurant provides new menu each day.
 
 #### API documentation
 
-| API        | Method | Description          | URL                                            | Body            | User           |
-|------------|--------|----------------------|------------------------------------------------|-----------------|----------------|
-| Admin      | GET    | get all profiles     | {URL}/admin/users                              | none            | Admin          |
-|            | GET    | get profile          | {URL}/admin/users/{userID}                     | none            | Admin          |
-|            | GET    | get profile by email | {URL}/admin/users/by?email={userEMAIL}         | none            | Admin          |
-|            | POST   | Create Profile       | {URL}/admin/users                              | Create Body     | Admin          |
-|            | DELETE | Delete Profile       | {URL}/admin/users/{userID}                     | none            | Admin          |
-|            | PUT    | Update Profile       | {URL}/admin/users/{userID}                     | Update Body     | Admin          |
-| Profile    | GET    | Get Profile          | {URL}/profile                                  | none            | Authorized     |
-|            | PUT    | Update Profile       | {URL}/profile                                  | Update Body     | Authorized     |
-|            | DELETE | Delete Profile       | {URL}/profile                                  | none            | Authorized     |
-|            | POST   | Register Profile     | {URL}/profile/register                         | Register Body   | Not Authorized |
-| Vote       | GET    | Get All              | {URL}/vote                                     | none            | Authorized     |
-|            | GET    | Get                  | {URL}/vote/{voteID}                            | none            | Authorized     |
-|            | POST   | Create               | {URL}/vote                                     | Create Body     | Authorized     |
-|            | DELETE | Delete               | {URL}/vote/{voteID}                            | none            | Authorized     |
-|            | PUT    | Update               | {URL}/vote/{voteID}                            | Update Body     | Authorized     |
-| Restaurant | GET    | Get All              | {URL}/restaurant/all                           | none            | Everyone       |
-|            | GET    | Get                  | {URL}/restaurant/{restaurantID}                | none            | Everyone       |
-|            | POST   | Create               | {URL}/restaurant                               | Create Body     | Admin Only     |
-|            | DELETE | Delete               | {URL}/restaurant/{restaurantID}                | none            | Admin Only     |
-|            | PUT    | Update               | {URL}/restaurant/{restaurantID}                | Update Body     | Admin Only     |
-| Meals      | GET    | Get All              | {URL}/meals/all/{restaurantID}                 | none            | Everyone       |
-|            | GET    | Get All By Date      | {URL}/meals/all/{restaurantID}?date=2019-08-19 | none            | Everyone       |
-|            | GET    | Get                  | {URL}/meals/{mealID}                           | none            | Everyone       |
-|            | GET    | Get With Restaurant  | {URL}/meals/with/{mealID}                      | none            | Everyone       |
-|            | POST   | Create               | {URL}/meals                                    | Create Body     | Admin Only     |
-|            | POST   | Create All           | {URL}/meals/all                                | Create All Body | Admin Only     |
-|            | DELETE | Delete               | {URL}/meals/{mealID}                           | none            | Admin Only     |
-|            | PUT    | Update               | {URL}/meals/{mealID}                           | Update Body     | Admin Only     |
-
+| API        | Method | Description          | URL                                            | User           |
+|------------|--------|----------------------|------------------------------------------------|----------------|
+| Admin      | GET    | get all profiles     | {URL}/admin/users                              | Admin          |
+|            | GET    | get profile          | {URL}/admin/users/{userID}                     | Admin          |
+|            | GET    | get profile by email | {URL}/admin/users/by?email={userEMAIL}         | Admin          |
+|            | POST   | Create Profile       | {URL}/admin/users                              | Admin          |
+|            | DELETE | Delete Profile       | {URL}/admin/users/{userID}                     | Admin          |
+|            | PUT    | Update Profile       | {URL}/admin/users/{userID}                     | Admin          |
+| Profile    | GET    | Get Profile          | {URL}/profile                                  | Authorized     |
+|            | PUT    | Update Profile       | {URL}/profile                                  | Authorized     |
+|            | DELETE | Delete Profile       | {URL}/profile                                  | Authorized     |
+|            | POST   | Register Profile     | {URL}/profile/register                         | Not Authorized |
+| Vote       | GET    | Get All              | {URL}/vote                                     | Authorized     |
+|            | GET    | Get                  | {URL}/vote/{voteID}                            | Authorized     |
+|            | POST   | Create               | {URL}/vote                                     | Authorized     |
+|            | DELETE | Delete               | {URL}/vote/{voteID}                            | Authorized     |
+|            | PUT    | Update               | {URL}/vote/{voteID}                            | Authorized     |
+| Restaurant | GET    | Get All              | {URL}/restaurant/all                           | Everyone       |
+|            | GET    | Get                  | {URL}/restaurant/{restaurantID}                | Everyone       |
+|            | POST   | Create               | {URL}/restaurant                               | Admin Only     |
+|            | DELETE | Delete               | {URL}/restaurant/{restaurantID}                | Admin Only     |
+|            | PUT    | Update               | {URL}/restaurant/{restaurantID}                | Admin Only     |
+| Meals      | GET    | Get All              | {URL}/meals/all/{restaurantID}                 | Everyone       |
+|            | GET    | Get All By Date      | {URL}/meals/all/{restaurantID}?date=2019-08-19 | Everyone       |
+|            | GET    | Get                  | {URL}/meals/{mealID}                           | Everyone       |
+|            | GET    | Get With Restaurant  | {URL}/meals/with/{mealID}                      | Everyone       |
+|            | POST   | Create               | {URL}/meals                                    | Admin Only     |
+|            | POST   | Create All           | {URL}/meals/all                                | Admin Only     |
+|            | DELETE | Delete               | {URL}/meals/{mealID}                           | Admin Only     |
+|            | PUT    | Update               | {URL}/meals/{mealID}                           | Admin Only     |
