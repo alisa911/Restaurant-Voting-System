@@ -76,7 +76,7 @@ Each restaurant provides new menu each day.
 |            | PUT    | Update               | {URL}/meals/{mealID}                           | Admin Only     |
 
 ---
-#### CURL
+### CURL
 
 ### Admin
 
@@ -128,13 +128,5 @@ Each restaurant provides new menu each day.
 | Create              | `curl -s -X POST -d '{"name": "New Meal 1","price": 30, "restaurantId": 103}' -H 'Content-Type: application/json;charset=UTF-8' {URL}/meals --user admin@gmail.com:admin`  |
 | Delete              | `curl -s -X DELETE {URL}/meals/1005 --user qweqwe@gmail.com:admin`                                                                                                         |
 | Update              | `curl -s -X PUT -d '{"id": 1005,"name": "New meal","price": 10, "restaurantId": 1002}' -H 'Content-Type: application/json' {URL}/meals/1005 --user qweqwe@gmail.com:admin` |
-
-
-
-
-
-
-
-
 
                                                                                                   |
