@@ -74,3 +74,67 @@ Each restaurant provides new menu each day.
 |            | POST   | Create All           | {URL}/meals/all                                | Admin Only     |
 |            | DELETE | Delete               | {URL}/meals/{mealID}                           | Admin Only     |
 |            | PUT    | Update               | {URL}/meals/{mealID}                           | Admin Only     |
+
+---
+#### CURL
+
+### Admin
+
+| Description          | CURL                                                                                                                                                                                                                                                                                     |
+|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|get all profiles      |`curl -s {URL}/admin/users --user qweqwe@gmail.com:admin`                                                                                                                                                                                                                                 |
+|get profile           | `curl -s {URL}/admin/users/101 --user qweqwe@gmail.com:admin`                                                                                                                                                                                                                            |
+| get profile by email | `curl -s {URL}/admin/users/by?email=qweqwe@gmail.com --user qweqwe@gmail.com:admin`                                                                                                                                                                                                      |
+| Create Profile       | `curl -s -X POST -d '{"id": null,"name": "New User","email": "newemail2@gmail.com","password": "newPass","registered": "2019-09-12T12:00:00","enabled": true,"roles": ["ROLE_USER"]}' -H 'Content-Type: application/json;charset=UTF-8' {URL}/admin/users --user qweqwe@gmail.com:admin` |
+| Update Profile       | `curl -s -X PUT -d '{"id": 1001,"name": "UpdatingName","email": "updatingemail@gmail.com"}' -H 'Content-Type: application/json' {URL}/admin/users/1001 --user qweqwe@gmail.com:admin`  
+                                                                                                  
+### Profile
+
+| Description      | CURL                                                                                                                                                                                                                                                                                     |
+|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Get Profile      | `curl -s {URL}/profile --user qweqwe@gmail.com:admin`                                                                                                                         |
+| Update Profile   | `curl -s -X PUT -d '{"name": "newName","email": "newemail@ya.ru","password": "newPassword"}' -H 'Content-Type: application/json' {URL}/profile --user qweqwe@gmail.com:admin` |
+| Delete Profile   | `curl -s -X DELETE {URL}/profile --user qweqwe@gmail.com:admin`                                                                                                               |
+| Register Profile | `curl -s -X POST -d '{"name": "newName","email": "newemail@ya.ru","password": "newPassword"}' -H 'Content-Type: application/json;charset=UTF-8' {URL}/profile/register`       |
+
+### Vote
+
+| Description      | CURL                                                                                                                                                                            
+|---------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| Get All | `curl -s {URL}/vote --user qweqwe@gmail.com:admin`                                                                                         |
+| Get     | `curl -s {URL}/vote/1013 --user qweqwe@gmail.com:admin`                                                                                    |
+| Create  | `curl -s -X POST -d '{"restaurantId": 1002}' -H 'Content-Type: application/json;charset=UTF-8' {URL}/vote --user qweqwe@gmail.com:admin`   |
+| Delete  | `curl -s -X DELETE {URL}/vote/1011 --user qweqwe@gmail.com:admin`                                                                          |
+| Update  | `curl -s -X PUT -d '{"id": 1013, "restaurantId": 1002}' -H 'Content-Type: application/json' {URL}/vote/1013 --user qweqwe@gmail.com:admin` |
+
+### Restaurant
+
+| Description      | CURL                                                                                                                                                                            
+|---------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Get All | `curl -s {URL}/restaurant/all`                                                                                                                     |
+| Get     | `curl -s {URL}/restaurant/1003`                                                                                                                    |
+| Create  | `curl -s -X POST -d '{"name": "New Restaurant"}' -H 'Content-Type: application/json;charset=UTF-8' {URL}/restaurant --user qweqwe@gmail.com:admin` |
+| Delete  | `curl -s -X DELETE {URL}/restaurant/1003 --user qweqwe@gmail.com:admin`                                                                            |
+| Update  | `curl -s -X PUT -d '{"id": 1002, "name": "Updated Name"}' -H 'Content-Type: application/json' {URL}/restaurant/1002 --user qweqwe@gmail.com:admin` |
+
+### Meals
+
+| Description         | CURL                                                                                                                                                                            
+|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Get All             | `curl -s {URL}/meals/all/1004`                                                                                                                                             |
+| Get All By Date     | `curl -s {URL}/meals/all/1004?date=2019-08-19`                                                                                                                             |
+| Get                 | `curl -s {URL}/meals/1005`                                                                                                                                                 |
+| Get With Restaurant | `curl -s {URL}/meals/with/1005`                                                                                                                                            |
+| Create              | `curl -s -X POST -d '{"name": "New Meal 1","price": 30, "restaurantId": 103}' -H 'Content-Type: application/json;charset=UTF-8' {URL}/meals --user admin@gmail.com:admin`  |
+| Delete              | `curl -s -X DELETE {URL}/meals/1005 --user qweqwe@gmail.com:admin`                                                                                                         |
+| Update              | `curl -s -X PUT -d '{"id": 1005,"name": "New meal","price": 10, "restaurantId": 1002}' -H 'Content-Type: application/json' {URL}/meals/1005 --user qweqwe@gmail.com:admin` |
+
+
+
+
+
+
+
+
+
+                                                                                                  |
